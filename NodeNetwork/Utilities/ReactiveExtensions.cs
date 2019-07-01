@@ -68,20 +68,20 @@ namespace NodeNetwork.Utilities
 			    .BindTo(self, viewProperty);
 	    }
 
-		/// <summary>
-		/// Takes each list produced by this observable and mirrors its contents in the target list.
-		/// The target list is modified, not replaced.
-		/// The type of the target list property is IReadOnlyReactiveList because it doesn't make sense to have a mutible list
-		/// if this binding keeps changing the contents of the list, but the type of the actual object should be ReactiveList 
-		/// so the list can be modified by this binding.
-		/// </summary>
-		/// <typeparam name="TObj">The type of viewmodel</typeparam>
-		/// <typeparam name="TListItem">The type of object contained in the list</typeparam>
-		/// <param name="data">The observable to take lists from.</param>
-		/// <param name="target">The viewmodel that is used as a base for finding the target list property</param>
-		/// <param name="property">The IReactiveList property that will be modified.</param>
-		/// <returns>A disposable to break the binding</returns>
-		[Obsolete("ReactiveList is deprecated, use DynamicData instead", false)]
+        /// <summary>
+        /// Takes each list produced by this observable and mirrors its contents in the target list.
+        /// The target list is modified, not replaced.
+        /// The type of the target list property is IReadOnlyReactiveList because it doesn't make sense to have a mutible list
+        /// if this binding keeps changing the contents of the list, but the type of the actual object should be ReactiveList 
+        /// so the list can be modified by this binding.
+        /// </summary>
+        /// <typeparam name="TObj">The type of viewmodel</typeparam>
+        /// <typeparam name="TListItem">The type of object contained in the list</typeparam>
+        /// <param name="data">The observable to take lists from.</param>
+        /// <param name="target">The viewmodel that is used as a base for finding the target list property</param>
+        /// <param name="property">The IReactiveList property that will be modified.</param>
+        /// <returns>A disposable to break the binding</returns>
+        [Obsolete("ReactiveList is deprecated, use DynamicData instead", false)]
 		public static IDisposable BindListContents<TObj, TListItem>(this IObservable<IList<TListItem>> data,
             TObj target, Expression<Func<TObj, IReadOnlyReactiveList<TListItem>>> property) where TObj : class
         {
@@ -360,6 +360,7 @@ namespace NodeNetwork.Utilities
         /// Wrapper class to create IReadOnlyReactiveList from IReactiveList
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        [Obsolete("ReactiveList is deprecated, use DynamicData instead", false)]
         private class ReadOnlyReactiveListWrapper<T> : IReadOnlyReactiveList<T>
         {
             private readonly IReactiveList<T> _list;

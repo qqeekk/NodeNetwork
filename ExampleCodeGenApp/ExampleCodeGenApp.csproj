@@ -144,6 +144,9 @@
     <Compile Include="Model\LocalVariableDefinition.cs" />
     <Compile Include="Model\StubStatement.cs" />
     <Compile Include="Model\VariableReference.cs" />
+    <Compile Include="ViewModels\BreadcrumbBar.xaml.cs">
+      <DependentUpon>BreadcrumbBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CodeGenConnectionViewModel.cs" />
     <Compile Include="ViewModels\CodeGenInputViewModel.cs" />
     <Compile Include="ViewModels\CodeGenListInputViewModel.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="ViewModels\CodeSimViewModel.cs" />
     <Compile Include="ViewModels\Editors\IntegerValueEditorViewModel.cs" />
     <Compile Include="ViewModels\Editors\StringValueEditorViewModel.cs" />
+    <Compile Include="ViewModels\Nodes\GroupNodeViewModel.cs" />
     <Compile Include="Views\CodeGenConnectionView.xaml.cs">
       <DependentUpon>CodeGenConnectionView.xaml</DependentUpon>
     </Compile>
@@ -171,9 +175,14 @@
     <Compile Include="Views\CodeSimView.xaml.cs">
       <DependentUpon>CodeSimView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\TypeVisibilityCheck.cs" />
     <Compile Include="Views\Editors\StringValueEditorView.xaml.cs">
       <DependentUpon>StringValueEditorView.xaml</DependentUpon>
     </Compile>
+    <Page Include="ViewModels\BreadcrumbBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CodeGenConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

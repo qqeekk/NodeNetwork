@@ -112,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GraphAlgorithms.cs" />
+    <Compile Include="Group\GroupIOBinding.cs" />
+    <Compile Include="Group\NodeGrouper.cs" />
     <Compile Include="Layout\ForceDirected\Configuration.cs" />
     <Compile Include="Layout\ForceDirected\Engine.cs" />
     <Compile Include="Layout\ForceDirected\ForceDirectedLayouter.cs" />
