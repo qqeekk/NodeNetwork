@@ -49,7 +49,7 @@ namespace NodeNetwork.Toolkit.ValueNode
                 //This caused problems when the value object isn't replaced, but one of its properties changes.
                 .AutoRefreshOnObservable(output => output.Value)
                 .Transform(output => output.CurrentValue, true)
-                /*.Select((IChangeSet<T> changes) =>
+                .Select((IChangeSet<T> changes) =>
                 {
                     if (changes.TotalChanges == changes.Replaced + changes.Refreshes)
                     {
@@ -71,7 +71,6 @@ namespace NodeNetwork.Toolkit.ValueNode
                                 else
                                 {
                                     throw new Exception("Does this ever occur?");
-                                    //for(int i = change.Range.Index; i < )
                                 }
                             }
                             else
@@ -83,22 +82,17 @@ namespace NodeNetwork.Toolkit.ValueNode
                         if (allRefresh) return newChanges;
                     }
                     return changes;
-                })*/;
-                
-
-            Connections.Connect(c => c.Output is ValueNodeOutputViewModel<IObservableList<T>>)
-                .Transform(c => ((ValueNodeOutputViewModel<IObservableList<T>>) c.Output).Value.Switch())
-                .Bind(out var aggregate)
-                .Subscribe();
-            var valuesFromAggregate = aggregate.Or();
-
-            //TODO: fix problem:
-            //Or deduplicates events by checking if an element is already in the list and silently ignoring the event in that case.
-            //this unfortunately also breaks propagation of changes through the system.
-            //Find a way to reinject the events, modify the Or, change the propagation mechanics.
-            //Maybe the root cause of this issue are replacement changes that should be refreshes?
+                });
             
-            Values = valuesFromSingles.Or(valuesFromAggregate).AsObservableList();
+            var valuesFromLists = Connections.Connect(c => c.Output is ValueNodeOutputViewModel<IObservableList<T>>)
+                // Grab list of values from output, using switch to handle when the list object is replaced
+                .Transform(c => ((ValueNodeOutputViewModel<IObservableList<T>>) c.Output).Value.Switch())
+                // Materialize this changeset stream into a list (needed to make sure the next step is done dynamically)
+                .AsObservableList()
+                // Take the union of all values from all lists. This is done dynamically, so adding/removing new lists works as expected.
+                .Or();
+
+            Values = valuesFromSingles.Or(valuesFromLists).AsObservableList();
         }
     }
 }
