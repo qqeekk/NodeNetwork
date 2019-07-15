@@ -76,7 +76,7 @@ namespace NodeNetworkTests
         }
 
         [TestMethod]
-        public void TestDD()
+        public void TestDDAutorefresh()
         {
             SourceList<Example> list = new SourceList<Example>();
             var valueList = list.Connect()
