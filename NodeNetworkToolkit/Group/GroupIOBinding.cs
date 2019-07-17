@@ -21,9 +21,7 @@ namespace NodeNetwork.Toolkit.Group
         public abstract NodeInputViewModel GetExitInput(NodeOutputViewModel exitOutput);
         public abstract NodeOutputViewModel GetExitOutput(NodeInputViewModel exitInput);
 
-        public abstract NodeInputViewModel AddNewEntranceInput(NodeOutputViewModel candidateOutput);
-        public abstract NodeOutputViewModel AddNewEntranceOutput(NodeInputViewModel candidateInput);
-        public abstract NodeOutputViewModel AddNewExitOutput(NodeInputViewModel candidateInput);
-        public abstract NodeInputViewModel AddNewExitInput(NodeOutputViewModel candidateOutput);
+        public abstract NodeInputViewModel AddNewGroupInput(NodeOutputViewModel candidateOutput, NodeInputViewModel candidateInput);
+        public abstract NodeOutputViewModel AddNewGroupOutput(NodeInputViewModel candidateInput, NodeOutputViewModel candidateOutput);
     }
 }

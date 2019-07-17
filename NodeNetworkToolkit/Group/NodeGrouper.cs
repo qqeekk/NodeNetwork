@@ -94,7 +94,7 @@ namespace NodeNetwork.Toolkit.Group
             {
                 if (!groupEntranceInputs.ContainsKey(borderInCon.Input))
                 {
-                    groupEntranceInputs[borderInCon.Input] = ioBinding.AddNewEntranceInput(borderInCon.Output);
+                    groupEntranceInputs[borderInCon.Input] = ioBinding.AddNewGroupInput(borderInCon.Output, borderInCon.Input);
                 }
             }
 
@@ -102,7 +102,7 @@ namespace NodeNetwork.Toolkit.Group
             {
                 if (!groupExitOutputs.ContainsKey(borderOutCon.Output))
                 {
-                    groupExitOutputs[borderOutCon.Output] = ioBinding.AddNewExitOutput(borderOutCon.Input);
+                    groupExitOutputs[borderOutCon.Output] = ioBinding.AddNewGroupOutput(borderOutCon.Input, borderOutCon.Output);
                 }
             }
 

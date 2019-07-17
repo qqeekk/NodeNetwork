@@ -81,34 +81,35 @@ namespace ExampleCodeGenApp.ViewModels
             }).PopulateInto(exitNode.Inputs);
         }
 
-        public override NodeInputViewModel AddNewEntranceInput(NodeOutputViewModel candidateOutput)
+        public override NodeInputViewModel AddNewGroupInput(NodeOutputViewModel candidateOutput, NodeInputViewModel candidateInput)
         {
-            NodeInputViewModel input = CreateCompatibleInput((dynamic)candidateOutput);
+            NodeInputViewModel input;
+            if (candidateInput != null)
+            {
+                input = CreateCompatibleInput(CreateCompatibleOutput((dynamic)candidateInput));
+            }
+            else
+            {
+                input = CreateCompatibleInput((dynamic)candidateOutput);
+            }
             GroupNode.Inputs.Add(input);
             return input;
         }
 
-        public override NodeOutputViewModel AddNewEntranceOutput(NodeInputViewModel candidateInput)
+        public override NodeOutputViewModel AddNewGroupOutput(NodeInputViewModel candidateInput, NodeOutputViewModel candidateOutput)
         {
-            NodeInputViewModel input = AddNewEntranceInput(CreateCompatibleOutput((dynamic)candidateInput));
-            int idx = GroupNode.Inputs.Items.IndexOf(input);
-            return EntranceNode.Outputs.Items.ElementAt(idx);
-        }
-
-        public override NodeInputViewModel AddNewExitInput(NodeOutputViewModel candidateOutput)
-        {
-            NodeOutputViewModel output = AddNewExitOutput(CreateCompatibleInput((dynamic)candidateOutput));
-            int idx = GroupNode.Outputs.Items.IndexOf(output);
-            return ExitNode.Inputs.Items.ElementAt(idx);
-        }
-
-        public override NodeOutputViewModel AddNewExitOutput(NodeInputViewModel candidateInput)
-        {
-            NodeOutputViewModel output = CreateCompatibleOutput((dynamic)candidateInput);
+            NodeOutputViewModel output;
+            if (candidateInput != null)
+            {
+                output = CreateCompatibleOutput((dynamic)candidateInput);
+            }
+            else
+            {
+                output = CreateCompatibleOutput(CreateCompatibleInput((dynamic)candidateOutput));
+            }
             GroupNode.Outputs.Add(output);
             return output;
         }
-
 
         public override NodeInputViewModel GetEntranceInput(NodeOutputViewModel entranceOutput)
         {
