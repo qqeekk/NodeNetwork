@@ -49,6 +49,7 @@ namespace NodeNetwork.Toolkit.ValueNode
                 //This caused problems when the value object isn't replaced, but one of its properties changes.
                 .AutoRefreshOnObservable(output => output.Value)
                 .Transform(output => output.CurrentValue, true)
+                .Filter(v => v != null)
                 .Select((IChangeSet<T> changes) =>
                 {
                     if (changes.TotalChanges == changes.Replaced + changes.Refreshes)
