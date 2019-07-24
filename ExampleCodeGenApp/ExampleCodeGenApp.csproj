@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamicData, Version=6.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicData.6.12.7\lib\net461\DynamicData.dll</HintPath>
+      <HintPath>..\packages\DynamicData.6.12.9\lib\net461\DynamicData.dll</HintPath>
     </Reference>
     <Reference Include="MoonSharp.Interpreter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=921e73ce94aa17f8, processorArchitecture=MSIL">
       <HintPath>..\packages\MoonSharp.2.0.0.0\lib\net40-client\MoonSharp.Interpreter.dll</HintPath>
@@ -44,7 +44,7 @@
       <HintPath>..\packages\ReactiveUI.9.19.5\lib\net461\ReactiveUI.dll</HintPath>
     </Reference>
     <Reference Include="Splat, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Splat.8.0.1\lib\net461\Splat.dll</HintPath>
+      <HintPath>..\packages\Splat.8.0.5\lib\net461\Splat.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -144,9 +144,6 @@
     <Compile Include="Model\LocalVariableDefinition.cs" />
     <Compile Include="Model\StubStatement.cs" />
     <Compile Include="Model\VariableReference.cs" />
-    <Compile Include="ViewModels\BreadcrumbBar.xaml.cs">
-      <DependentUpon>BreadcrumbBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\CodeGenConnectionViewModel.cs" />
     <Compile Include="ViewModels\CodeGenInputViewModel.cs" />
     <Compile Include="ViewModels\CodeGenListInputViewModel.cs" />
@@ -158,7 +155,6 @@
     <Compile Include="ViewModels\CodeSimViewModel.cs" />
     <Compile Include="ViewModels\Editors\IntegerValueEditorViewModel.cs" />
     <Compile Include="ViewModels\Editors\StringValueEditorViewModel.cs" />
-    <Compile Include="ViewModels\Nodes\GroupNodeViewModel.cs" />
     <Compile Include="Views\CodeGenConnectionView.xaml.cs">
       <DependentUpon>CodeGenConnectionView.xaml</DependentUpon>
     </Compile>
@@ -175,14 +171,9 @@
     <Compile Include="Views\CodeSimView.xaml.cs">
       <DependentUpon>CodeSimView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Converters\TypeVisibilityCheck.cs" />
     <Compile Include="Views\Editors\StringValueEditorView.xaml.cs">
       <DependentUpon>StringValueEditorView.xaml</DependentUpon>
     </Compile>
-    <Page Include="ViewModels\BreadcrumbBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CodeGenConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
