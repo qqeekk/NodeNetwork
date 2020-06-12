@@ -71,6 +71,8 @@ namespace NodeNetwork.Toolkit.NodeList
         private DisplayMode _display;
         #endregion
 
+        public Func<DisplayMode, string> StringifyDisplayMode { get; set; } = mode => mode.ToString();
+
         #region NodeFactories
         /// <summary>
         /// A dictionary of nodes and functions to create duplicate instances of them.
@@ -107,10 +109,24 @@ namespace NodeNetwork.Toolkit.NodeList
         private string _searchQuery = "";
         #endregion
 
+        #region EmptySearchText
+        /// <summary>
+        /// Placeholder value for empty search text.
+        /// </summary>
+        public string EmptySearchText
+        {
+            get => _emptySearchText;
+            set => this.RaiseAndSetIfChanged(ref _emptySearchText, value);
+        }
+
+        private string _emptySearchText;
+        #endregion
+
         public NodeListViewModel()
         {
             Title = "Add node";
             EmptyLabel = "No matching nodes found.";
+            EmptySearchText = "Search...";
             Display = DisplayMode.Tiles;
 
 	        var onQueryChanged = this.WhenAnyValue(vm => vm.SearchQuery)

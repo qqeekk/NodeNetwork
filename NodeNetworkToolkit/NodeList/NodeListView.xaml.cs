@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using DynamicData;
 using NodeNetwork.Utilities;
+using NodeNetwork.Utilities.WPF;
 using NodeNetwork.ViewModels;
 using ReactiveUI;
 
@@ -63,12 +64,16 @@ namespace NodeNetwork.Toolkit.NodeList
 
         public NodeListView()
         {
+            var converter = new ConverterFromFunction<NodeListViewModel.DisplayMode>();
+            Resources["displayTypeToTextConverter"] = converter;
+
             InitializeComponent();
             if (DesignerProperties.GetIsInDesignMode(this)) { return; }
 
             viewComboBox.ItemsSource = Enum.GetValues(typeof(NodeListViewModel.DisplayMode)).Cast<NodeListViewModel.DisplayMode>();
             this.WhenActivated(d =>
             {
+                converter.Func = ViewModel.StringifyDisplayMode;
                 this.Bind(ViewModel, vm => vm.Display, v => v.viewComboBox.SelectedItem).DisposeWith(d);
 
                 this.OneWayBind(ViewModel, vm => vm.Display, v => v.elementsList.ItemTemplate,
@@ -101,6 +106,7 @@ namespace NodeNetwork.Toolkit.NodeList
 
                 this.OneWayBind(ViewModel, vm => vm.Title, v => v.titleLabel.Text).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.EmptyLabel, v => v.emptyMessage.Text).DisposeWith(d);
+                this.OneWayBind(ViewModel, vm => vm.EmptySearchText, v => v.emptySearchBoxMessage.Text).DisposeWith(d);
 
                 this.WhenAnyValue(v => v.searchBox.IsFocused, v => v.searchBox.Text)
                     .Select(t => !t.Item1 && string.IsNullOrWhiteSpace(t.Item2))
