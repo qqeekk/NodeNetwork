@@ -62,8 +62,8 @@
         </ControlTemplate>
     </UserControl.Resources>
 
-    <StackPanel>
-        <Grid>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
             <TextBlock x:Name="titleLabel" Margin="10, 0, 0, 0" Padding="0, 10, 0, 10" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18" FontFamily="Segoe UI Semilight" Text="Test"/>
             <ComboBox x:Name="viewComboBox" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="Auto" Height="20">
                 <ComboBox.ItemTemplate>
@@ -74,7 +74,7 @@
             </ComboBox>
         </Grid>
 
-        <Grid x:Name="searchBoxGrid" Margin="25,7,25,0" MaxWidth="300" VerticalAlignment="Top">
+        <Grid DockPanel.Dock="Top" x:Name="searchBoxGrid" Margin="25,7,25,0" MaxWidth="300" VerticalAlignment="Top">
             <TextBox x:Name="searchBox" TextWrapping="Wrap"/>
             <TextBlock Margin="5, 0, 0, 0" x:Name="emptySearchBoxMessage" IsHitTestVisible="False" Foreground="LightGray"/>
         </Grid>
@@ -104,5 +104,5 @@
             </ScrollViewer>
             <TextBlock x:Name="emptyMessage" Text="No matching nodes found" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
-    </StackPanel>
+    </DockPanel>
 </UserControl>
